@@ -190,16 +190,33 @@
                     game.render();
                 },
                 flop: function () {
-                    game.x = this.id.split("_")[2];
-                    game.y = this.id.split("_")[1];
-                    console.log(game.x,game.y)
-                    console.log(game.arr[game.x][game.y].isEmpty)
-                    //dodac ze game.x < wielkosc tablicy, tak samo dla game.y
-                    if (game.arr[parseInt(game.x)+1][game.y].isEmpty == true)
-                        console.log("Switch",true)
+                    game.x = this.id.split("_")[1];
+                    game.y = this.id.split("_")[2];
+                    console.log(game.x, game.y);
 
-                    if (game.arr[game.x][parseInt(game.y)+1].isEmpty == true)
-                        console.log("Switch",true)
+                    // Sprawdź, czy sąsiadujący element na dole stronie jest pusty
+                    if (game.x < game.arr.length - 1 && game.arr[parseInt(game.x) + 1][game.y].isEmpty) {
+                        // Zamień miejscami kliknięty element z pustym elementem
+                        [game.arr[game.x][game.y], game.arr[parseInt(game.x) + 1][game.y]] = [game.arr[parseInt(game.x) + 1][game.y], game.arr[game.x][game.y]];
+                    }
+
+                    // // Sprawdź, czy sąsiadujący element po prawej jest pusty
+                    if (game.y < game.arr[0].length - 1 && game.arr[game.x][parseInt(game.y) + 1].isEmpty) {
+                        // Zamień miejscami kliknięty element z pustym elementem
+                        [game.arr[game.x][game.y], game.arr[game.x][parseInt(game.y) + 1]] = [game.arr[game.x][parseInt(game.y) + 1], game.arr[game.x][game.y]];
+                    }
+                    // // // Sprawdź, czy sąsiadujący element na gorze stronie jest pusty
+                    // if (game.x < game.arr.length - 1 && game.arr[parseInt(game.x) - 1][game.y].isEmpty) {
+                    //     // Zamień miejscami kliknięty element z pustym elementem
+                    //     [game.arr[game.x][game.y], game.arr[parseInt(game.x) + 1][game.y]] = [game.arr[parseInt(game.x) + 1][game.y], game.arr[game.x][game.y]];
+                    // }
+
+                    // // // Sprawdź, czy sąsiadujący element po lewej jest pusty
+                    // if (game.y < game.arr[0].length - 1 && game.arr[game.x][parseInt(game.y) - 1].isEmpty) {
+                    //     // Zamień miejscami kliknięty element z pustym elementem
+                    //     [game.arr[game.x][game.y], game.arr[game.x][parseInt(game.y) + 1]] = [game.arr[game.x][parseInt(game.y) + 1], game.arr[game.x][game.y]];
+                    // }
+                    game.render();
                 },
                 shuffleArray: () => {
 
