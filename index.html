@@ -101,6 +101,8 @@
     <script>
         document.addEventListener("DOMContentLoaded", (event) => {
             game = {
+                temp1: null,
+                temp2: null,
                 arr: [],
                 x: null,
                 y: null,
@@ -190,26 +192,34 @@
                     game.render();
                 },
                 flop: function () {
-                    game.x=this.id.split("_")[2];
-                    game.y=this.id.split("_")[1];
-                    game.xycheck=this.class.split("_")[1];
-                    console.log(game.x,game.y)
-                    console.log(game.xycheck)
-                    console.log(game.arr[game.x][game.y].isEmpty)
-                    if (game.arr[parseInt(game.x)+1][game.y].isEmpty == true && game.x != game.temp1)
-                        console.log("l:",true)
-                    if (game.arr[game.x][parseInt(game.y)+1].isEmpty == true && game.y != game.temp2)
-                        console.log("l:",true)
+                    game.x = this.id.split("_")[2];
+                    game.y = this.id.split("_")[1];
+                    game.xycheck = this.classList.split("_")[1];
+                    console.log(game.x, game.y);
+                    console.log(game.xycheck);
+                    console.log(game.arr[game.x][game.y].isEmpty);
+                    if (game.arr[parseInt(game.x) + 1][game.y].isEmpty == true && game.x != game.temp1) {
+                        console.log("l:", true);
+                        game.temp1 = game.x;
+                        game.temp2 = game.y;
+                    }
+                    if (game.arr[game.x][parseInt(game.y) + 1].isEmpty == true && game.y != game.temp2) {
+                        console.log("l:", true);
+                        game.temp1 = game.x;
+                        game.temp2 = game.y;
+                    }
                 },
                 render: () => {
                     console.log("rend", game.pf);
                     game.pf.innerHTML = "";
-                    for (let i = 0; i < game.arr.length; i++)
-                        for(j=0; j<game.arr[i].length;j++){
-                            if(game.arr[i][j].isEmpty == true) game.arr[i][j].el.classList.add("magia")
+                    for (let i = 0; i < game.arr.length; i++) {
+                        for (j = 0; j < game.arr[i].length; j++) {
+                            if (game.arr[i][j].isEmpty == true) {
+                                game.arr[i][j].el.classList.add("magia");
+                            }
                             game.pf.appendChild(game.arr[i][j].el);
                         }
- 
+                    }
                 },
                 //trzeba zrobic cos co zawsze patrzy jaką clase ma isEmpty:False i zezwala na klikanie i switchowanie tylko tym kwadratom które graniczą, czego nie wiem
                 //czym ma być to coś (funkcja czy co), jak zrobić wogole taki sentence?? ((isEmpty:False)).getElementById?????, jak wogole sprawdzic classy innych kwadratów,
