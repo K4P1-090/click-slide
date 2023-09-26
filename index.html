@@ -118,7 +118,7 @@
                             el.style=`background-position: ${-120*j}px ${-120*i}px`;
                             el.onclick = game.flop
                             game.arr[i].push({el:el, isEmpty:false});
-                            if (j == n-1 && i == n-1){
+                            if (j == 1 && i == 1){
                                 //el.classList.add("magia");
                                 game.arr[i][j].isEmpty = true
                             }
@@ -205,17 +205,17 @@
                         // Zamień miejscami kliknięty element z pustym elementem
                         [game.arr[game.x][game.y], game.arr[game.x][parseInt(game.y) + 1]] = [game.arr[game.x][parseInt(game.y) + 1], game.arr[game.x][game.y]];
                     }
-                    // // // Sprawdź, czy sąsiadujący element na gorze stronie jest pusty
-                    // if (game.x < game.arr.length - 1 && game.arr[parseInt(game.x) - 1][game.y].isEmpty) {
-                    //     // Zamień miejscami kliknięty element z pustym elementem
-                    //     [game.arr[game.x][game.y], game.arr[parseInt(game.x) + 1][game.y]] = [game.arr[parseInt(game.x) + 1][game.y], game.arr[game.x][game.y]];
-                    // }
+                    // Sprawdź, czy sąsiadujący element na górze jest pusty
+                    if (game.x > 0 && game.arr[parseInt(game.x) - 1][game.y].isEmpty) {
+                        // Zamień miejscami kliknięty element z pustym elementem
+                        [game.arr[game.x][game.y], game.arr[parseInt(game.x) - 1][game.y]] = [game.arr[parseInt(game.x) - 1][game.y], game.arr[game.x][game.y]];
+                    }
 
-                    // // // Sprawdź, czy sąsiadujący element po lewej jest pusty
-                    // if (game.y < game.arr[0].length - 1 && game.arr[game.x][parseInt(game.y) - 1].isEmpty) {
-                    //     // Zamień miejscami kliknięty element z pustym elementem
-                    //     [game.arr[game.x][game.y], game.arr[game.x][parseInt(game.y) + 1]] = [game.arr[game.x][parseInt(game.y) + 1], game.arr[game.x][game.y]];
-                    // }
+                    // Sprawdź, czy sąsiadujący element po lewej jest pusty
+                    if (game.y > 0 && game.arr[game.x][parseInt(game.y) - 1].isEmpty) {
+                        // Zamień miejscami kliknięty element z pustym elementem
+                        [game.arr[game.x][game.y], game.arr[game.x][parseInt(game.y) - 1]] = [game.arr[game.x][parseInt(game.y) - 1], game.arr[game.x][game.y]];
+                    }
                     game.render();
                 },
                 shuffleArray: () => {
