@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        * {
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'VT323', monospace;
+            background-color:#102542;
+            display:flex;
+            justify-content:center;
+            align-items: center;
+            flex-direction:column;
+        }
+        #pf
+        {
+            width:364px;
+            height:364px;
+            border:2px solid #FFE2FE;
+        }
+        .container
+        {
+            margin-top:25px;
+        }
+        button{
+            color: #102542;
+            font-family: 'VT323', monospace;
+            font-size: 18px;
+            border:#FFE2FE solid 3px;
+            background-color: #F87060;
+            position:static;
+            width:88px;
+            height:27px;
+            border-radius:25px;
+        }
+        .rozruch
+        {
+            width: 184px;
+        }
+        .field3 {
+            width: 120px;
+            height: 120px;
+            border: solid 1px #102542;
+            float: left;
+            background-image: url('ten.jpg');
+            background-size: 360px 360px;
+        }
+        .field4 {
+            width: 90px;
+            height: 90px;
+            border: solid 1px #102542;
+            float: left;
+            background-image: url('ten.jpg');
+            background-size: 360px 360px;
+        }
+        .field5 {
+            width: 72px;
+            height: 72px;
+            border: solid 1px #102542;
+            float: left;
+            background-image: url('ten.jpg');
+            background-size: 360px 360px;
+        }
+        .field6 {
+            width: 60px;
+            height: 60px;
+            border: solid 1px #102542;
+            float: left;
+            background-image: url('ten.jpg');
+            background-size: 360px 360px;
+        }
+        .magia
+        {
+            background-color:#102542;
+            background-image:none;
+        }
+        h1
+        {
+            color:#F87060;
+            font-size: 66px;
+            margin-top:5px;
+            margin-bottom:10px;
+        }
+        .border1
+        {
+            padding:2px;
+            border: 2px solid #FFE2FE;
+        }
+        .margin
+        {
+            margin-top:25px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", (event) => {
+            game = {
+                arr: [],
+                x: null,
+                y: null,
+                pf: document.getElementById("pf"),
+                drei: (n) => {
+                    console.log(game.pf);
+                    game.arr = [];
+                    for (let i = 0; i < n; i++) {
+                        game.arr.push([]);
+                        for (j = 0; j < n; j++) {
+                            let el = document.createElement("div");
+                            el.classList.add("field3");
+                            //el.classList.add("number" + i + j);
+                            el.id="number_" + i +"_"+ j;
+                            el.style=`background-position: ${-120*j}px ${-120*i}px`;
+                            el.onclick = game.flop
+                            game.arr[i].push({el:el, isEmpty:false});
+                            if (j == n-1 && i == n-1){
+                                //el.classList.add("magia");
+                                game.arr[i][j].isEmpty = true
+                            }
+                        }
+                    }
+                    game.render();
+                },
+                vier: (n) => {
+                    console.log(game.pf);
+                    game.arr = [];
+                    for (let i = 0; i < n; i++) {
+                        game.arr.push([]);
+                        for (j = 0; j < n; j++) {
+                            let el = document.createElement("div");
+                            el.classList.add("field4");
+                            //el.classList.add("number" + i + j);
+                            el.id="number_" + i +"_"+ j;
+                            el.style=`background-position: ${-90*j}px ${-90*i}px`;
+                            el.onclick = game.flop
+                            game.arr[i].push({el:el, isEmpty:false});
+                            if (j == n-1 && i == n-1){
+                                //el.classList.add("magia");
+                                game.arr[i][j].isEmpty = true
+                            }
+                        }
+                    }
+                    game.render();
+                },
+                funf: (n) => {
+                    console.log(game.pf);
+                    game.arr = [];
+                    for (let i = 0; i < n; i++) {
+                        game.arr.push([]);
+                        for (j = 0; j < n; j++) {
+                            let el = document.createElement("div");
+                            el.classList.add("field5");
+                            //el.classList.add("number" + i + j);
+                            el.id="number_" + i +"_"+ j;
+                            el.style=`background-position: ${-72*j}px ${-72*i}px`;
+                            el.onclick = game.flop
+                            game.arr[i].push({el:el, isEmpty:false});
+                            if (j == n-1 && i == n-1){
+                                //el.classList.add("magia");
+                                game.arr[i][j].isEmpty = true
+                            }
+                        }
+                    }
+                    game.render();
+                },
+                sechs: (n) => {
+                    console.log(game.pf);
+                    game.arr = [];
+                    for (let i = 0; i < n; i++) {
+                        game.arr.push([]);
+                        for (j = 0; j < n; j++) {
+                            let el = document.createElement("div");
+                            el.classList.add("field6");
+                            //el.classList.add("number" + i + j);
+                            el.id="number_" + i +"_"+ j;
+                            el.style=`background-position: ${-60*j}px ${-60*i}px`;
+                            el.onclick = game.flop
+                            game.arr[i].push({el:el, isEmpty:false});
+                            if (j == n-1 && i == n-1){
+                                //el.classList.add("magia");
+                                game.arr[i][j].isEmpty = true
+                            }
+                        }
+                    }
+                    game.render();
+                },
+                flop: function () {
+                    game.x=this.id.split("_")[1];
+                    game.y=this.id.split("_")[2];
+                    console.log(game.x,game.y)
+                    console.log(game.arr[game.x][game.y].isEmpty)
+                    if (game.arr[parseInt(game.x)+1][game.y].isEmpty == true)
+                        console.log("l:",true)
+                    if (game.arr[game.x][parseInt(game.y)+1].isEmpty == true)
+                        console.log("l:",true)
+                },
+                render: () => {
+                    console.log("rend", game.pf);
+                    game.pf.innerHTML = "";
+                    for (let i = 0; i < game.arr.length; i++)
+                        for(j=0; j<game.arr[i].length;j++){
+                            if(game.arr[i][j].isEmpty == true) game.arr[i][j].el.classList.add("magia")
+                            game.pf.appendChild(game.arr[i][j].el);
+                        }
+ 
+                },
+                //trzeba zrobic cos co zawsze patrzy jaką clase ma isEmpty:False i zezwala na klikanie i switchowanie tylko tym kwadratom które graniczą, czego nie wiem
+                //czym ma być to coś (funkcja czy co), jak zrobić wogole taki sentence?? ((isEmpty:False)).getElementById?????, jak wogole sprawdzic classy innych kwadratów,
+                //jak sprawić zeby nie/dalo się je klikac, no i jak podmieniać je miejscami z blankiem
+
+                // checker: () => {
+                //     documemt.querySelectorAll('');
+                //     for(let i = 0; i < 4; i++)
+                        
+                // }
+            }
+        })
+    </script>
+</head>
+ 
+<body>
+    <h1>#YOMI_Hustle #Ukladanka #Trudne</h1>
+    <div class="border1">
+        <div class="border1" style="width:216px; height:216px">
+            <img src="ten.jpg" class="border1">
+        </div>
+    </div>
+    <div class="container">
+        <button onclick="game.drei(3)">3x3</button>
+        <button onclick="game.vier(4)">4x4</button>
+        <button onclick="game.funf(5)">5x5</button>
+        <button onclick="game.sechs(6)">6x6</button>
+    </div>
+    <div class="container">
+        <button class="rozruch">Start</button>
+        <button class="rozruch">Restart</button>
+    </div>
+    <div class="margin border1">
+        <div class="border1" >
+            <div id="pf"></div>
+        </div>
+    </div>
+</body>
+ 
+</html>
