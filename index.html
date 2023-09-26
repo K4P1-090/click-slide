@@ -221,15 +221,65 @@
                         }
                     }
                 },
-                //trzeba zrobic cos co zawsze patrzy jaką clase ma isEmpty:False i zezwala na klikanie i switchowanie tylko tym kwadratom które graniczą, czego nie wiem
-                //czym ma być to coś (funkcja czy co), jak zrobić wogole taki sentence?? ((isEmpty:False)).getElementById?????, jak wogole sprawdzic classy innych kwadratów,
-                //jak sprawić zeby nie/dalo się je klikac, no i jak podmieniać je miejscami z blankiem
-
-                // checker: () => {
-                //     documemt.querySelectorAll('');
-                //     for(let i = 0; i < 4; i++)
-                        
-                // }
+                checker: () => {
+                    let emptySquare = document.querySelector('.magia');
+                    let emptySquareX = emptySquare.id.split("_")[2];
+                    let emptySquareY = emptySquare.id.split("_")[1];
+                    let adjacentSquares = [
+                        document.querySelector(`#number_${emptySquareY-1}_${emptySquareX}`),
+                        document.querySelector(`#number_${emptySquareY+1}_${emptySquareX}`),
+                        document.querySelector(`#number_${emptySquareY}_${emptySquareX-1}`),
+                        document.querySelector(`#number_${emptySquareY}_${emptySquareX+1}`)
+                    ];
+                    for (let i = 0; i < adjacentSquares.length; i++) {
+                        if (adjacentSquares[i] !== null) {
+                            adjacentSquares[i].classList.add('adjacent');
+                            adjacentSquares[i].onclick = game.switchSquares;
+                        }
+                    }
+                },
+                switchSquares: function () {
+                    let clickedSquareX = this.id.split("_")[2];
+                    let clickedSquareY = this.id.split("_")[1];
+                    let emptySquare = document.querySelector('.magia');
+                    let emptySquareX = emptySquare.id.split("_")[2];
+                    let emptySquareY = emptySquare.id.split("_")[1];
+                    let clickedSquare = game.arr[clickedSquareY][clickedSquareX].el;
+                    let emptySquareClone = emptySquare.cloneNode(true);
+                    let clickedSquareClone = clickedSquare.cloneNode(true);
+                    emptySquare.parentNode.replaceChild(clickedSquareClone, emptySquare);
+                    clickedSquare.parentNode.replaceChild(emptySquareClone, clickedSquare);
+                    game.arr[clickedSquareY][clickedSquareX].el = emptySquareClone;
+                    game.arr[emptySquareY][emptySquareX].el = clickedSquareClone;
+                    game.arr[clickedSquareY][clickedSquareX].isEmpty = true;
+                    game.arr[emptySquareY][emptySquareX].isEmpty = false;
+                    emptySquareClone.classList.remove('magia');
+                    clickedSquareClone.classList.add('magia');
+                    let adjacentSquares = document.querySelectorAll('.adjacent');
+                    for (let i = 0; i < adjacentSquares.length; i++) {
+                        adjacentSquares[i].classList.remove('adjacent');
+                        adjacentSquares[i].onclick = null;
+                    }
+                    game.checkWin();
+                },
+                checkWin: () => {
+                    let win = true;
+                    for (let i = 0; i < game.arr.length; i++) {
+                        for (j = 0; j < game.arr[i].length; j++) {
+                            if (game.arr[i][j].isEmpty == false) {
+                                let id = game.arr[i][j].el.id;
+                                let correctX = id.split("_")[2];
+                                let correctY = id.split("_")[1];
+                                if (i != correctY || j != correctX) {
+                                    win = false;
+                                }
+                            }
+                        }
+                    }
+                    if (win) {
+                        alert('You win!');
+                    }
+                }
             }
         })
     </script>
