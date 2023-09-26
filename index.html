@@ -44,7 +44,7 @@
         {
             width: 184px;
         }
-        .field3 {
+        .field_3 {
             width: 120px;
             height: 120px;
             border: solid 1px #102542;
@@ -52,7 +52,7 @@
             background-image: url('ten.jpg');
             background-size: 360px 360px;
         }
-        .field4 {
+        .field-4 {
             width: 90px;
             height: 90px;
             border: solid 1px #102542;
@@ -60,7 +60,7 @@
             background-image: url('ten.jpg');
             background-size: 360px 360px;
         }
-        .field5 {
+        .field-5 {
             width: 72px;
             height: 72px;
             border: solid 1px #102542;
@@ -68,7 +68,7 @@
             background-image: url('ten.jpg');
             background-size: 360px 360px;
         }
-        .field6 {
+        .field-6 {
             width: 60px;
             height: 60px;
             border: solid 1px #102542;
@@ -112,7 +112,7 @@
                         game.arr.push([]);
                         for (j = 0; j < n; j++) {
                             let el = document.createElement("div");
-                            el.classList.add("field3");
+                            el.classList.add("field_3");
                             //el.classList.add("number" + i + j);
                             el.id="number_" + i +"_"+ j;
                             el.style=`background-position: ${-120*j}px ${-120*i}px`;
@@ -133,7 +133,7 @@
                         game.arr.push([]);
                         for (j = 0; j < n; j++) {
                             let el = document.createElement("div");
-                            el.classList.add("field4");
+                            el.classList.add("field_4");
                             //el.classList.add("number" + i + j);
                             el.id="number_" + i +"_"+ j;
                             el.style=`background-position: ${-90*j}px ${-90*i}px`;
@@ -154,7 +154,7 @@
                         game.arr.push([]);
                         for (j = 0; j < n; j++) {
                             let el = document.createElement("div");
-                            el.classList.add("field5");
+                            el.classList.add("field_5");
                             //el.classList.add("number" + i + j);
                             el.id="number_" + i +"_"+ j;
                             el.style=`background-position: ${-72*j}px ${-72*i}px`;
@@ -175,7 +175,7 @@
                         game.arr.push([]);
                         for (j = 0; j < n; j++) {
                             let el = document.createElement("div");
-                            el.classList.add("field6");
+                            el.classList.add("field_6");
                             //el.classList.add("number" + i + j);
                             el.id="number_" + i +"_"+ j;
                             el.style=`background-position: ${-60*j}px ${-60*i}px`;
@@ -190,13 +190,15 @@
                     game.render();
                 },
                 flop: function () {
-                    game.x=this.id.split("_")[1];
-                    game.y=this.id.split("_")[2];
+                    game.x=this.id.split("_")[2];
+                    game.y=this.id.split("_")[1];
+                    game.xycheck=this.class.split("_")[1];
                     console.log(game.x,game.y)
+                    console.log(game.xycheck)
                     console.log(game.arr[game.x][game.y].isEmpty)
-                    if (game.arr[parseInt(game.x)+1][game.y].isEmpty == true)
+                    if (game.arr[parseInt(game.x)+1][game.y].isEmpty == true && game.x != game.temp1)
                         console.log("l:",true)
-                    if (game.arr[game.x][parseInt(game.y)+1].isEmpty == true)
+                    if (game.arr[game.x][parseInt(game.y)+1].isEmpty == true && game.y != game.temp2)
                         console.log("l:",true)
                 },
                 render: () => {
